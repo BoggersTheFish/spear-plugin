@@ -44,7 +44,7 @@ For MySQL or PostgreSQL, set `storage.backend` in config (see [Storage](./storag
 
 ## Permissions
 
-Grant staff permissions as needed (see [Commands](./COMMANDS.md)). Base permission:
+Grant staff permissions as needed (see [Commands](./commands.md)). Base permission:
 
 ```yaml
 tsspear.use: true  # default: op
