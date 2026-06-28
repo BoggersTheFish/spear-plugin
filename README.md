@@ -57,6 +57,10 @@ Designed to run alongside [`superpowers`](https://github.com/anthropics/claude-p
 - [Contributing](CONTRIBUTING.md) — dev workflow.
 - [Testing](TESTING.md) — manual E2E checklist and CI overview.
 
+### Reference implementations
+
+- [**TS-Spear**](docs/refs/ts-spear/overview.md) — exhaustive SPEAR reference implementation: Paper anti-cheat intelligence engine (Phases 0–5). Architecture, ML hooks, schemas, commands, storage, and SPEAR pattern mapping. Implementation: [BoggersTheFish/ts-spear](https://github.com/BoggersTheFish/ts-spear).
+
 ## License
 
 See `LICENSE`.

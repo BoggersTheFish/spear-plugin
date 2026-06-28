@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://badgersmc.dev/ts-spear/schemas/evidence/v1",
+  "title": "TS-Spear Evidence",
+  "description": "Immutable evidence record produced by a check module",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "kind",
+    "dimension",
+    "severity",
+    "credibility",
+    "timestamp",
+    "reason",
+    "sourceCheckId"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Globally unique evidence identifier"
+    },
+    "playerId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "IMPOSSIBLE_ACCELERATION",
+        "FLY_VIOLATION",
+        "SPEED_VIOLATION",
+        "JESUS_VIOLATION",
+        "SCAFFOLD_VIOLATION",
+        "REACH_EXCESS",
+        "KILL_AURA_PATTERN",
+        "AIM_SNAP",
+        "VELOCITY_ANOMALY",
+        "AUTO_CLICKER_PATTERN",
+        "FAST_BREAK",
+        "FAST_PLACE",
+        "XRAY_HEURISTIC",
+        "BAD_PACKET",
+        "BLINK",
+        "NOSLOW",
+        "TIMER",
+        "MACRO_PATTERN",
+        "INVALID_INTERACT",
+        "LAG_SPIKE",
+        "TELEPORT",
+        "CHECK_FAILURE"
+      ]
+    },
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "MOVEMENT",
+        "COMBAT",
+        "INVENTORY",
+        "AUTOMATION",
+        "NETWORKING",
+        "INTERACTION"
+      ]
+    },
+    "severity": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Raw signal strength before credibility weighting"
+    },
+    "credibility": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Check-specific trust in this reading"
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0.0,
+      "description": "severity * credibility, computed at ingest"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tick": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "world": {
+      "type": "string"
+    },
+    "location": {
+      "type": "object",
+      "required": ["x", "y", "z"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "z": { "type": "number" },
+        "yaw": { "type": "number" },
+        "pitch": { "type": "number" }
+      }
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable explanation; never empty"
+    },
+    "sourceCheckId": {
+      "type": "string",
+      "description": "Check module that produced this evidence"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Structured check-specific data"
+    },
+    "relatedEvidence": {
+      "type": "array",
+      "items": { "type": "string", "format": "uuid" }
+    }
+  },
+  "additionalProperties": false
+}
