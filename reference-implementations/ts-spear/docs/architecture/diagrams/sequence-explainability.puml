@@ -1,0 +1,44 @@
+@startuml Explainability Query Sequence
+skinparam sequenceMessageAlign center
+
+actor Staff
+participant "CommandEngine" as Cmd
+participant "TrustEvaluationService" as Trust
+participant "ExplainabilityService" as Explain
+participant "StateEngine" as State
+participant "EvidenceStore" as Store
+participant "GuiEngine" as GUI
+
+Staff -> Cmd : /ts inspect Steve
+Cmd -> Trust : explain(playerId)
+Trust -> State : getPlayerState(uuid)
+State --> Trust : PlayerState snapshot
+
+Trust -> Explain : buildReport(state)
+
+loop each ConfidenceDimension
+  Explain -> Explain : rank supporting evidence\n(weight * recency)
+  Explain -> Explain : rank conflicting evidence
+  Explain -> Explain : apply decay since lastEval
+  Explain -> Explain : compute net confidence
+end
+
+Explain -> Store : fetchEvidenceDetails(topIds)
+Store --> Explain : evidence payloads
+
+Explain --> Trust : ExplanationReport
+Trust --> Cmd : report
+Cmd -> GUI : openInspectGui(report)
+GUI -> Staff : display breakdown
+
+note right of GUI
+  Movement: 0.82
+  Supported by:
+    - impossible acceleration
+    - repeated pattern
+  Conflicted by:
+    - server lag spike
+  Net: 0.71
+end note
+
+@enduml

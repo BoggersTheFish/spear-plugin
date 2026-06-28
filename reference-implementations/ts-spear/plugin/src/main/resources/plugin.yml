@@ -1,0 +1,60 @@
+name: TSSpear
+version: ${version}
+main: com.badgersmc.tsspear.TSSpearPlugin
+api-version: '1.21'
+description: Thinking System anti-cheat intelligence engine
+authors: [BadgersMC]
+website: https://github.com/BadgersMC/ts-spear
+
+commands:
+  ts:
+    description: TS-Spear staff commands
+    usage: /ts <inspect|trust|suspicion|evidence|replay|graph|timeline|export|annotate|infer|freeze|unfreeze|alerts|checks|debug> [player]
+    permission: tsspear.use
+
+permissions:
+  tsspear.use:
+    description: Base TS-Spear command access
+    default: op
+  tsspear.inspect:
+    description: Inspect player confidence breakdown
+    default: op
+  tsspear.trust:
+    description: View player trust state
+    default: op
+  tsspear.suspicion:
+    description: View player suspicion state
+    default: op
+  tsspear.evidence:
+    description: View persisted evidence
+    default: op
+  tsspear.replay:
+    description: Snapshot and view movement replay
+    default: op
+  tsspear.checks:
+    description: List and manage registered checks
+    default: op
+  tsspear.graph:
+    description: Open tension graph GUI
+    default: op
+  tsspear.timeline:
+    description: Open receipt timeline GUI
+    default: op
+  tsspear.export:
+    description: Export ML evidence batch for a player
+    default: op
+  tsspear.annotate:
+    description: Attach staff training labels to player exports
+    default: op
+  tsspear.infer:
+    description: Run configured inference provider on player features
+    default: op
+  tsspear.freeze:
+    description: Enable inspection freeze with continuous replay capture
+    default: op
+  tsspear.alerts:
+    description: Toggle personal staff alerts
+    default: op
+  tsspear.debug:
+    description: Performance profile and raw state dump
+    default: op

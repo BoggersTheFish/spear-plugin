@@ -1,0 +1,118 @@
+@startuml TS-Spear Class Hierarchy
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+package "domain.model" {
+  class PlayerState <<aggregate root>> {
+    +uuid: UUID
+    +version: long
+    +movement: MovementState
+    +combat: CombatState
+    +trust: TrustState
+    +suspicion: SuspicionState
+    +evidenceGraph: EvidenceGraph
+    +tensionGraph: TensionGraph
+  }
+
+  class Evidence <<record>> {
+    +id: EvidenceId
+    +kind: EvidenceKind
+    +dimension: ConfidenceDimension
+    +severity: double
+    +credibility: double
+    +reason: String
+  }
+
+  class GraphNode <<record>> {
+    +nodeId: String
+    +activation: double
+    +confidence: double
+    +supportingEvidence: List
+    +conflictingEvidence: List
+  }
+
+  class ConfidenceReceipt <<record>> {
+    +receiptId: UUID
+    +confidenceDelta: double
+    +previousValue: double
+    +newValue: double
+    +linkedEvidenceIds: List
+  }
+
+  PlayerState *-- Evidence
+  PlayerState *-- GraphNode
+  PlayerState *-- ConfidenceReceipt
+}
+
+package "domain.check" {
+  interface Check {
+    +id(): CheckId
+    +category(): CheckCategory
+    +dimension(): ConfidenceDimension
+    +evaluate(ctx): List<Evidence>
+  }
+
+  abstract class AbstractCheck {
+    #configSlice(): CheckConfig
+  }
+
+  abstract class AbstractMovementCheck
+  abstract class AbstractCombatCheck
+
+  class ImpossibleMovementCheck
+  class FlyCheck
+  class ReachCheck
+  class KillAuraCheck
+
+  Check <|.. AbstractCheck
+  AbstractCheck <|-- AbstractMovementCheck
+  AbstractCheck <|-- AbstractCombatCheck
+  AbstractMovementCheck <|-- ImpossibleMovementCheck
+  AbstractMovementCheck <|-- FlyCheck
+  AbstractCombatCheck <|-- ReachCheck
+  AbstractCombatCheck <|-- KillAuraCheck
+}
+
+package "application.engine" {
+  abstract class AbstractEngine {
+    +start()
+    +stop()
+    +health(): EngineHealth
+  }
+
+  class CheckEngine
+  class EvidenceEngine
+  class GraphEngine
+  class StateEngine
+  class ReplayEngine
+  class StorageEngine
+  class NotificationEngine
+
+  AbstractEngine <|-- CheckEngine
+  AbstractEngine <|-- EvidenceEngine
+  AbstractEngine <|-- GraphEngine
+  AbstractEngine <|-- StateEngine
+  AbstractEngine <|-- ReplayEngine
+  AbstractEngine <|-- StorageEngine
+  AbstractEngine <|-- NotificationEngine
+
+  CheckEngine --> Check : schedules
+  EvidenceEngine --> Evidence : ingests
+  GraphEngine --> GraphNode : mutates
+  StateEngine --> PlayerState : owns
+}
+
+package "domain.port" {
+  interface PlayerStateRepository
+  interface EvidenceStore
+  interface ReceiptStore
+  interface InferenceProvider
+  interface PredictionProvider
+}
+
+CheckEngine ..> Check
+GraphEngine ..> ConfidenceReceipt
+StorageEngine ..> ReceiptStore
+StateEngine ..> PlayerStateRepository
+
+@enduml

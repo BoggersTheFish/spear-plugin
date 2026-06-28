@@ -1,0 +1,28 @@
+prefix: "[TS-Spear] "
+
+command:
+  no-permission: "No permission."
+  player-not-found: "Player not found: {player}"
+  specify-player: "Specify a player."
+  gui-requires-player: "GUI commands require a player."
+
+freeze:
+  enabled: "Inspection freeze enabled for {player} — continuous capture active."
+  disabled: "Inspection freeze removed for {player}."
+  already-frozen: "{player} is already frozen."
+  not-frozen: "{player} is not frozen."
+
+alerts:
+  enabled: "Personal TS-Spear alerts enabled."
+  disabled: "Personal TS-Spear alerts disabled."
+  status-on: "Alerts: ON"
+  status-off: "Alerts: OFF"
+
+export:
+  success: "Exported ML evidence batch {id} → {path}"
+
+replay:
+  no-data: "No replay data for {player}"
+
+inspect:
+  no-state: "No TS state for {player}"

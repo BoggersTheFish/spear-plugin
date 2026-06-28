@@ -1,0 +1,54 @@
+@startuml TS-Spear Component Topology
+skinparam componentStyle rectangle
+
+actor Player
+actor Staff
+actor "Future ML Model" as ML
+
+component "Paper Server\n(Main Thread)" as Paper {
+  [Event Listeners] as Listeners
+  [Packet Bridge] as Packets
+}
+
+component "TS-Spear Plugin" as Plugin {
+  [Event Bus] as Bus
+
+  package "Engines" {
+    [Check Engine] as Checks
+    [Evidence Engine] as Evidence
+    [Graph Engine] as Graph
+    [State Engine] as State
+    [Replay Engine] as Replay
+    [Storage Engine] as Storage
+    [Notification Engine] as Notify
+    [GUI Engine] as GUI
+    [Command Engine] as Cmd
+  }
+
+  package "Worker Pool" as Workers {
+    [Check Workers] as CW
+    [Graph Workers] as GW
+  }
+
+  database "SQLite/MySQL/Postgres" as DB
+}
+
+Player --> Listeners : Bukkit events
+Listeners --> Bus : PlayerSampleEvent
+Bus --> Checks : schedule
+Bus --> Replay : capture
+Checks --> CW : async
+CW --> Evidence : EvidenceProducedEvent
+Evidence --> GW : propagate
+GW --> Graph
+Graph --> State
+State --> Storage : receipts
+Storage --> DB : async batch
+State --> Notify : threshold breach
+Notify --> Staff : rich alert
+Staff --> Cmd : /ts commands
+Cmd --> GUI
+GUI --> State : explain()
+State --> ML : export via\nEvidenceExporter
+
+@enduml

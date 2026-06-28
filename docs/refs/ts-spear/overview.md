@@ -1,7 +1,7 @@
 # TS-Spear — SPEAR Reference Implementation
 
 **Captured:** 2026-06-28  
-**Implementation repo:** [BoggersTheFish/ts-spear](https://github.com/BoggersTheFish/ts-spear) (pending `BadgersMC/ts-spear` org transfer)  
+**Implementation source:** [`reference-implementations/ts-spear/`](../../reference-implementations/ts-spear/) (in this repository)  
 **Status:** Phases 0–5 implemented · Paper 1.21+ · Java 21
 
 ## What This Is
@@ -67,8 +67,7 @@ Full detail: [phases.md](./phases.md)
 ## Build & Verify
 
 ```bash
-git clone https://github.com/BoggersTheFish/ts-spear.git
-cd ts-spear
+cd reference-implementations/ts-spear
 ./gradlew build
 # plugin/build/libs/TSSpear-0.1.0-SNAPSHOT.jar
 ```

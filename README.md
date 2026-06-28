@@ -59,7 +59,8 @@ Designed to run alongside [`superpowers`](https://github.com/anthropics/claude-p
 
 ### Reference implementations
 
-- [**TS-Spear**](docs/refs/ts-spear/overview.md) — exhaustive SPEAR reference implementation: Paper anti-cheat intelligence engine (Phases 0–5). Architecture, ML hooks, schemas, commands, storage, and SPEAR pattern mapping. Implementation: [BoggersTheFish/ts-spear](https://github.com/BoggersTheFish/ts-spear).
+- [**TS-Spear**](reference-implementations/ts-spear/) — full source (Phases 0–5): Gradle multi-module Paper plugin, tests, benchmarks, shadow JAR build.
+- [**TS-Spear docs**](docs/refs/ts-spear/overview.md) — architecture, schemas, commands, ML hooks, and SPEAR pattern mapping for the implementation above.
 
 ## License
 

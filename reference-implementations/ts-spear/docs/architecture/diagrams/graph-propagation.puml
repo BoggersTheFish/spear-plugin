@@ -1,0 +1,43 @@
+@startuml Graph Propagation Model
+skinparam nodesep 40
+skinparam ranksep 30
+
+package "EvidenceGraph" {
+  object "EV-101\nImpossible Accel" as EV1 #Pink
+  object "EV-102\nRepeated Pattern" as EV2 #Pink
+  object "EV-103\nAir Time Anomaly" as EV3 #Pink
+  object "EV-201\nLag Spike" as EV4 #LightBlue
+  object "EV-202\nTeleport" as EV5 #LightBlue
+}
+
+package "ConstraintGraph" {
+  object "LAG_SPIKE\nactive" as CG1 #LightBlue
+  object "ON_GROUND\nfalse" as CG2 #White
+}
+
+package "TensionGraph" {
+  object "MOVEMENT_HIGH\nactivation=0.82" as TG1 #Orange
+  object "LAG_EXCUSE\nactivation=0.45" as TG2 #LightBlue
+}
+
+package "RiskGraph" {
+  object "MOVEMENT\nconfidence=0.71" as RG1 #Red
+  object "AGGREGATE\nrisk=0.58" as RG2 #Yellow
+}
+
+EV1 --> TG1 : SUPPORTS (0.91)
+EV2 --> TG1 : SUPPORTS (0.74)
+EV3 --> TG1 : SUPPORTS (0.68)
+EV4 --> TG2 : SUPPORTS (0.45)
+EV5 --> TG2 : SUPPORTS (0.32)
+TG2 --> TG1 : CONTRADICTS (0.55)
+TG1 --> RG1 : IMPLIES (0.82)
+RG1 --> RG2 : BOOSTS (0.71)
+
+note bottom of TG1
+  tension = Σsupport - Σcontradict * multiplier
+  confidence = sigmoid(activation - tension * sensitivity)
+  net = 0.71 after lag contradiction
+end note
+
+@enduml

@@ -1056,7 +1056,7 @@ Key config sections: `engine`, `checks`, `decay`, `thresholds`, `storage`, `repl
 
 ### 18.2 Diagrams
 
-PlantUML sources ship with the [implementation repository](https://github.com/BoggersTheFish/ts-spear) under `docs/architecture/diagrams/` (not bundled in this reference doc set).
+PlantUML sources ship in [`reference-implementations/ts-spear/docs/architecture/diagrams/`](../../reference-implementations/ts-spear/docs/architecture/diagrams/).
 
 ### 18.3 Extension Points
 

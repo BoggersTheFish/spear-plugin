@@ -1,0 +1,52 @@
+@startuml Player Trust Lifecycle
+skinparam state {
+  BackgroundColor<<normal>> LightBlue
+  BackgroundColor<<alert>> LightYellow
+  BackgroundColor<<staff>> LightGreen
+}
+
+[*] --> OBSERVE : PlayerJoin
+
+state OBSERVE {
+  OBSERVE : confidence < watch threshold
+  OBSERVE : evidence accumulating
+}
+
+state ACCUMULATE {
+  ACCUMULATE : confidence rising
+  ACCUMULATE : tension unresolved
+}
+
+state ELEVATE <<alert>> {
+  ELEVATE : confidence > alert threshold
+  ELEVATE : trend RISING
+  ELEVATE : staff notified
+}
+
+state REVIEW <<staff>> {
+  REVIEW : staff inspecting
+  REVIEW : replay active
+  REVIEW : freeze optional
+}
+
+state RESOLVE {
+  RESOLVE : confidence decaying
+  RESOLVE : or staff cleared
+}
+
+OBSERVE --> ACCUMULATE : evidence threshold met
+ACCUMULATE --> ELEVATE : confidence breach
+ACCUMULATE --> OBSERVE : contradictions dominate\ntension resolved down
+ELEVATE --> REVIEW : staff opens inspect
+ELEVATE --> ACCUMULATE : confidence falls\n(trend FALLING)
+REVIEW --> RESOLVE : staff action / decay
+RESOLVE --> OBSERVE : confidence < watch
+RESOLVE --> ACCUMULATE : new evidence
+
+note right of ELEVATE
+  Never auto-punish.
+  Staff receives
+  recommendation only.
+end note
+
+@enduml

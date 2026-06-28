@@ -1,0 +1,44 @@
+@startuml Evidence Pipeline Sequence
+skinparam sequenceMessageAlign center
+
+actor Player
+participant "Paper Listener" as Listener
+participant "EventBus" as Bus
+participant "CheckEngine" as Checks
+participant "Check Worker" as Worker
+participant "EvidenceEngine" as Evidence
+participant "GraphEngine" as Graph
+participant "StateEngine" as State
+participant "StorageEngine" as Storage
+participant "NotificationEngine" as Notify
+actor Staff
+
+Player -> Listener : move event
+Listener -> Listener : extract MovementSample\n(pooled)
+Listener -> Bus : publish(PlayerSampleEvent)
+Bus -> Checks : schedule(sample)
+Bus -> Replay : captureFrame(sample)
+
+Checks -> Worker : evaluate async
+Worker -> Worker : ImpossibleMovementCheck.evaluate()
+Worker -> Bus : publish(EvidenceProducedEvent)
+
+Bus -> Evidence : ingest(evidence[])
+Evidence -> Evidence : dedupe, normalize, link
+Evidence -> Graph : propagate(evidence)
+
+Graph -> Graph : insert nodes/edges
+Graph -> Graph : compute tension
+Graph -> Graph : resolve confidence
+Graph -> State : applyMutations(playerState)
+State -> State : emit ConfidenceReceipt
+
+State -> Storage : enqueue(receipt, evidence)
+Storage -> Storage : batch write (async)
+
+State -> Notify : evaluateThresholds()
+alt confidence > threshold AND trend rising
+  Notify -> Staff : rich alert\n(confidence, evidence, trend)
+end
+
+@enduml

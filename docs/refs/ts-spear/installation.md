@@ -13,8 +13,8 @@ TS-Spear targets **Paper 1.21+** servers. The plugin JAR is self-contained (shad
 ## Build from Source
 
 ```bash
-git clone https://github.com/BoggersTheFish/ts-spear.git
-cd ts-spear
+git clone https://github.com/BadgersMC/spear-plugin.git
+cd spear-plugin/reference-implementations/ts-spear
 ./gradlew build
 ```
 
