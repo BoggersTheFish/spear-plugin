@@ -406,7 +406,7 @@ DecayCurve (sealed interface)
 
 Check (interface)
 └── AbstractCheck (abstract class)
-    ├── MovementCheck
+    ├── AbstractMovementCheck
     │   ├── ImpossibleMovementCheck
     │   ├── FlyCheck
     │   ├── SpeedCheck
@@ -1047,7 +1047,7 @@ Key config sections: `engine`, `checks`, `decay`, `thresholds`, `storage`, `repl
 
 | Document | Location |
 |----------|----------|
-| Architecture (this doc) | `docs/architecture/` |
+| Architecture (this doc) | `docs/refs/ts-spear/` |
 | Lifecycle guide | `docs/lifecycle.md` |
 | Contribution guide | `CONTRIBUTING.md` |
 | Testing guide | `TESTING.md` |
@@ -1056,7 +1056,7 @@ Key config sections: `engine`, `checks`, `decay`, `thresholds`, `storage`, `repl
 
 ### 18.2 Diagrams
 
-PlantUML sources in `docs/architecture/diagrams/`. CI renders to SVG on release.
+PlantUML sources in `docs/refs/ts-spear/diagrams/`. CI renders to SVG on release.
 
 ### 18.3 Extension Points
 
@@ -1121,7 +1121,7 @@ ts-spear/
 
 ## 21. GUI Wireframes
 
-See [wireframes/GUI-WIREFRAMES.md](../wireframes/GUI-WIREFRAMES.md) for ASCII wireframes of:
+See [gui-wireframes.md](./gui-wireframes.md) for ASCII wireframes of:
 
 - Inspect GUI
 - Graph visualization
@@ -1134,7 +1134,7 @@ See [wireframes/GUI-WIREFRAMES.md](../wireframes/GUI-WIREFRAMES.md) for ASCII wi
 
 ## 22. Format Specifications
 
-Detailed schemas in `docs/schemas/`:
+Detailed schemas in `./schemas/`:
 
 | File | Description |
 |------|-------------|

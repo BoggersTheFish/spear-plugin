@@ -32,7 +32,7 @@ storage:
   evidence-persist-threshold: 0.25
 ```
 
-See [Storage](./STORAGE.md) for JDBC connection blocks.
+See [Storage](./storage.md) for JDBC connection blocks.
 
 ## Checks
 
@@ -82,7 +82,7 @@ ml:
     suspicious-threshold: 0.40
 ```
 
-See [ML Hooks](./ML-HOOKS.md) for export and inference details.
+See [ML Hooks](./ml-hooks.md) for export and inference details.
 
 ## Graph & Thresholds
 

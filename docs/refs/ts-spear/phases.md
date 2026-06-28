@@ -60,7 +60,7 @@ Delivery status for TS-Spear from MVP through ML-ready.
 - `RuleBasedInferenceProvider` + `MlProviderRegistry`
 - `AnnotationService` + `ts_staff_annotation` (Flyway V2)
 - Commands: `/ts annotate`, `/ts infer`, `/ts export jsonl`
-- [ML Hooks](./ML-HOOKS.md) external integration guide
+- [ML Hooks](./ml-hooks.md) external integration guide
 
 ## Phase 6 — Enterprise (Planned)
 

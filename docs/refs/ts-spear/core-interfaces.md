@@ -342,7 +342,7 @@ public final class ImpossibleMovementCheck extends AbstractMovementCheck {
     }
 
     private double normalize(double observed, double limit, double ceilingFactor) {
-        return Math.min(1.0, (observed - limit) / (limit * ceilingFactor));
+        return Math.min(1.0, Math.max(0.0, (observed - limit) / (limit * ceilingFactor)));
     }
 }
 ```

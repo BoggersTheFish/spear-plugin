@@ -13,7 +13,7 @@ TS-Spear targets **Paper 1.21+** servers. The plugin JAR is self-contained (shad
 ## Build from Source
 
 ```bash
-git clone https://github.com/BadgersMC/ts-spear.git
+git clone https://github.com/BoggersTheFish/ts-spear.git
 cd ts-spear
 ./gradlew build
 ```
@@ -24,7 +24,7 @@ Output: `plugin/build/libs/TSSpear-0.1.0-SNAPSHOT.jar`
 
 1. Copy `TSSpear-0.1.0-SNAPSHOT.jar` to your server's `plugins/` directory.
 2. Start (or restart) the server once to generate `plugins/TSSpear/config.yml`.
-3. Edit configuration as needed (see [Configuration](./CONFIGURATION.md)).
+3. Edit configuration as needed (see [Configuration](./configuration.md)).
 4. Reload or restart.
 
 ### Optional: ProtocolLib
@@ -40,7 +40,7 @@ Without ProtocolLib, movement-based packet sampling still powers blink detection
 
 Default: **SQLite** (`plugins/TSSpear/tsspear.db`).
 
-For MySQL or PostgreSQL, set `storage.backend` in config (see [Storage](./STORAGE.md)).
+For MySQL or PostgreSQL, set `storage.backend` in config (see [Storage](./storage.md)).
 
 ## Permissions
 
