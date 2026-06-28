@@ -59,8 +59,8 @@ Designed to run alongside [`superpowers`](https://github.com/anthropics/claude-p
 
 ### Reference implementations
 
-- [**TS-Spear**](reference-implementations/ts-spear/) — full source (Phases 0–5): Gradle multi-module Paper plugin, tests, benchmarks, shadow JAR build.
-- [**TS-Spear docs**](docs/refs/ts-spear/overview.md) — architecture, schemas, commands, ML hooks, and SPEAR pattern mapping for the implementation above.
+- [**TS-Spear**](reference-implementations/ts-spear/) — full source (Phases 0–5): Gradle multi-module Paper plugin, tests, benchmarks, shadow JAR build. Docs in [`reference-implementations/ts-spear/docs/`](reference-implementations/ts-spear/docs/README.md).
+- [**TS-Spear overview**](docs/refs/ts-spear/overview.md) — SPEAR pattern mapping and citeable entry point (links to source + docs above).
 
 ## License
 

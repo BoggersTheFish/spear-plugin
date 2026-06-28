@@ -82,6 +82,7 @@
     },
     "linkedEvidenceIds": {
       "type": "array",
+      "uniqueItems": true,
       "items": { "type": "string", "format": "uuid" }
     },
     "stateVersion": {

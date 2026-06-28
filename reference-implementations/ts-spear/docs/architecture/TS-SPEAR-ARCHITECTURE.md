@@ -407,18 +407,20 @@ DecayCurve (sealed interface)
 
 Check (interface)
 └── AbstractCheck (abstract class)
-    ├── MovementCheck
+    ├── AbstractMovementCheck
     │   ├── ImpossibleMovementCheck
     │   ├── FlyCheck
     │   ├── SpeedCheck
     │   ├── JesusCheck
     │   └── ScaffoldCheck
-    ├── CombatCheck
+    ├── AbstractCombatCheck
     │   ├── ReachCheck
     │   ├── KillAuraCheck
     │   ├── AimCheck
     │   └── VelocityCheck
-    └── ...
+    └── AbstractNetworkingCheck
+        ├── BlinkCheck
+        └── BadPacketCheck
 
 CheckModule (interface) — groups related checks, owns config slice
 ```

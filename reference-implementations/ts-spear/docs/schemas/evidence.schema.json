@@ -7,6 +7,7 @@
   "required": [
     "schemaVersion",
     "id",
+    "playerId",
     "kind",
     "dimension",
     "severity",

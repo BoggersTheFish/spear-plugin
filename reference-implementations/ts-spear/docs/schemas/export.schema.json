@@ -20,7 +20,7 @@
     "playerId": { "type": "string", "format": "uuid" },
     "timeWindow": {
       "type": "object",
-      "required": ["start", "end"],
+      "required": ["start", "end", "tickStart", "tickEnd"],
       "properties": {
         "start": { "type": "string", "format": "date-time" },
         "end": { "type": "string", "format": "date-time" },
@@ -30,6 +30,7 @@
     },
     "confidenceVector": {
       "type": "object",
+      "required": ["movement", "combat", "inventory", "automation", "networking", "interaction", "aggregate"],
       "properties": {
         "movement": { "type": "number" },
         "combat": { "type": "number" },
@@ -42,9 +43,14 @@
     },
     "evidenceGraph": {
       "type": "object",
-      "properties": {
-        "nodes": { "type": "array" },
-        "edges": { "type": "array" }
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["nodes", "edges"],
+        "properties": {
+          "nodes": { "type": "array" },
+          "edges": { "type": "array" }
+        }
       }
     },
     "movementSequence": {
@@ -70,7 +76,7 @@
     },
     "receipts": {
       "type": "array",
-      "items": { "$ref": "receipt.schema.json" }
+      "items": { "$ref": "https://badgersmc.dev/ts-spear/schemas/receipt/v1" }
     },
     "label": {
       "type": ["object", "null"],

@@ -1,7 +1,7 @@
 # TS-Spear — SPEAR Reference Implementation
 
 **Captured:** 2026-06-28  
-**Implementation source:** [`reference-implementations/ts-spear/`](../../reference-implementations/ts-spear/) (in this repository)  
+**Source:** [`reference-implementations/ts-spear/`](../../reference-implementations/ts-spear/)  
 **Status:** Phases 0–5 implemented · Paper 1.21+ · Java 21
 
 ## What This Is
@@ -12,12 +12,7 @@ It is **not** a fork of this repository (`spear-plugin`). This repo packages the
 
 ## Why It Lives in `docs/refs/`
 
-Following the `docs/refs/hook-schema.md` pattern, this directory captures an **exhaustive, citeable reference** for teams using SPEAR to build complex systems. Use it when:
-
-- Bootstrapping a SPEAR JVM project with hexagonal layering
-- Demonstrating evidence-gated progression in a non-Claude-Code domain
-- Studying how SPEAR receipts, migrations, and TDD map to runtime systems
-- Integrating ML export pipelines behind stable ports
+Following the [`hook-schema.md`](../hook-schema.md) pattern, this overview is a **citeable entry point** for teams using SPEAR to build complex systems. Full documentation lives alongside the source under `reference-implementations/ts-spear/docs/`.
 
 ## SPEAR Pattern Mapping
 
@@ -25,7 +20,7 @@ Following the `docs/refs/hook-schema.md` pattern, this directory captures an **e
 |-------------------|---------------------------|
 | `spec → prove → engine → arch → refine` | Phase 0–5 delivery gates with tests per module |
 | EARS `REQ-*` IDs | Check IDs + evidence kinds + confidence dimensions |
-| `docs/requirements.md` | `docs/refs/ts-spear/architecture.md` §11–12 |
+| `docs/requirements.md` | Architecture doc §11–12 |
 | Konsist layer rules | `domain` → `application` → `infrastructure` (zero Bukkit in domain) |
 | `.claude/spear-state.json` | `PlayerState` version counter + `ConfidenceReceipt` audit trail |
 | Evidence blocks before progression | Checks return `Evidence`, never `ban()` |
@@ -62,8 +57,6 @@ benchmarks/  plugin/
 | 4 | Object pooling, packet checks, JMH benchmarks, stress tests |
 | 5 | ML export, staff annotations, `InferenceProvider` SPI |
 
-Full detail: [phases.md](./phases.md)
-
 ## Build & Verify
 
 ```bash
@@ -72,19 +65,22 @@ cd reference-implementations/ts-spear
 # plugin/build/libs/TSSpear-0.1.0-SNAPSHOT.jar
 ```
 
-## Document Index
+## Documentation
+
+All docs, schemas, and PlantUML diagrams:
+
+**[`reference-implementations/ts-spear/docs/README.md`](../../reference-implementations/ts-spear/docs/README.md)**
 
 | Doc | Purpose |
 |-----|---------|
-| [README.md](./README.md) | Local index |
-| [architecture.md](./architecture.md) | Full 1,300-line system design |
-| [core-interfaces.md](./core-interfaces.md) | Port and engine contracts |
-| [phases.md](./phases.md) | Phase 0–5 status + roadmap |
-| [installation.md](./installation.md) | Paper deployment |
-| [configuration.md](./configuration.md) | `config.yml` reference |
-| [commands.md](./commands.md) | Staff `/ts` commands |
-| [storage.md](./storage.md) | SQLite / MySQL / PostgreSQL |
-| [development.md](./development.md) | Contributor build guide |
-| [ml-hooks.md](./ml-hooks.md) | ML export + inference SPI |
-| [gui-wireframes.md](./gui-wireframes.md) | Staff GUI designs |
-| [schemas/](./schemas/) | JSON schemas + DDL |
+| [Architecture](../../reference-implementations/ts-spear/docs/architecture/TS-SPEAR-ARCHITECTURE.md) | Full system design |
+| [Core Interfaces](../../reference-implementations/ts-spear/docs/architecture/CORE-INTERFACES.md) | Port and engine contracts |
+| [Phases](../../reference-implementations/ts-spear/docs/PHASES.md) | Phase 0–5 status + roadmap |
+| [Installation](../../reference-implementations/ts-spear/docs/INSTALLATION.md) | Paper deployment |
+| [Configuration](../../reference-implementations/ts-spear/docs/CONFIGURATION.md) | `config.yml` reference |
+| [Commands](../../reference-implementations/ts-spear/docs/COMMANDS.md) | Staff `/ts` commands |
+| [Storage](../../reference-implementations/ts-spear/docs/STORAGE.md) | SQLite / MySQL / PostgreSQL |
+| [Development](../../reference-implementations/ts-spear/docs/DEVELOPMENT.md) | Contributor build guide |
+| [ML Hooks](../../reference-implementations/ts-spear/docs/ML-HOOKS.md) | ML export + inference SPI |
+| [GUI Wireframes](../../reference-implementations/ts-spear/docs/wireframes/GUI-WIREFRAMES.md) | Staff GUI designs |
+| [Schemas](../../reference-implementations/ts-spear/docs/schemas/) | JSON schemas + DDL |

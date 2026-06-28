@@ -4,7 +4,7 @@
   "title": "TS-Spear Replay Format",
   "description": "JSON representation of replay sequences. Binary format uses same field semantics with packed encoding.",
   "type": "object",
-  "required": ["schemaVersion", "sequenceId", "playerId", "startTick", "frames"],
+  "required": ["schemaVersion", "sequenceId", "playerId", "playerName", "startTick", "endTick", "startTime", "triggerReason", "frames"],
   "properties": {
     "schemaVersion": { "type": "integer", "const": 1 },
     "sequenceId": { "type": "string", "format": "uuid" },
